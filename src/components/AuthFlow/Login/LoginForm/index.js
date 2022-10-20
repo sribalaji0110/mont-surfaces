@@ -130,9 +130,10 @@ const LoginForm = ({ userRoleId }) => {
     navigate(route)
   }
   const handleSubmit = () => {
-    const store = menuList.filter((ele) => ele.roleId === userRoleId && ele)[0]
-    dispatch({ type: AdminActionType.currentUser, payload: store.name })
-    navigate(store.route[0].path)
+    const storeList = menuList.filter((ele) => ele.roleId === userRoleId && ele)[0]
+    dispatch({ type: AdminActionType.sideBarMenuList, payload: storeList.route })
+    dispatch({ type: AdminActionType.currentUser, payload: storeList.name })
+    navigate(storeList.route[0].path)
   }
   useEffect(() => {
     if (userRoleId === 0) {
